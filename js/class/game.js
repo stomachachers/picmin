@@ -1,10 +1,5 @@
 class Game {
   constructor() {
-    this.gameboard = new Gameboard();
-    this.button = new Button();
-  }
-
-  begin() {
     // canvas要素を取得する
     let canvas = document.getElementById('canvas');
 
@@ -20,10 +15,15 @@ class Game {
 
     // canvasの描画コンテキストを取得する
     this.ctx = canvas.getContext('2d');
+
+    this.gameboard = new Gameboard();
+    this.button = new Button();
   }
 
   render() {
     this.button.draw();
-    window.requestAnimationFrame(render);
+    // TODO メソッドをcallbackとして呼び出す
+    console.log(this.render);
+    window.requestAnimationFrame(this.render);
   }
 }

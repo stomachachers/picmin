@@ -1,13 +1,12 @@
 // DOMと関連リソースの読み込みが終わってから実行する
 window.addEventListener('load', function() {
   let game = new Game();
-  game.begin();
-
   game.render();
 
   test_func();
 });
 
 function test_func() {
-
+    // とりあえずのhw
+    console.log("Hello, World!\n");
 }
