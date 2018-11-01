@@ -1,0 +1,13 @@
+const CANVAS_WIDTH_PC = 750;
+
+// ユーザエージェントからデバイスを判別する
+function getDevice() {
+  let ua = window.navigator.userAgent;
+
+  if (ua.includes('iPhone') || ua.includes('Android')) {
+    return 'sp';
+  }
+  else {
+    return 'pc';
+  }
+}
