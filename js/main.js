@@ -4,4 +4,10 @@ window.addEventListener('load', function() {
   game.begin();
 
   game.render();
+
+  test_func();
 });
+
+function test_func() {
+
+}
