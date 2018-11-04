@@ -16,14 +16,13 @@ class Game {
     // canvasの描画コンテキストを取得する
     this.ctx = canvas.getContext('2d');
 
-    this.gameboard = new Gameboard();
-    this.button = new Button();
+    this.button = new StartButton(this.ctx);
   }
 
   render() {
     this.button.draw();
-    // TODO メソッドをcallbackとして呼び出す
-    console.log(this.render);
-    window.requestAnimationFrame(this.render);
+
+    // コールバック時のthisの値を，windowではなく現在のthis(Game)に設定する
+    window.requestAnimationFrame(this.render.bind(this));
   }
 }
