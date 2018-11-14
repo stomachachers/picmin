@@ -12,17 +12,27 @@ class Game {
       canvas.width = CANVAS_WIDTH_PC;
       canvas.height = window.innerHeight;
     }
+    console.log('canvas.width :', canvas.width);
+    console.log('canvas.height:', canvas.height);
 
     // canvasの描画コンテキストを取得する
     this.ctx = canvas.getContext('2d');
 
-    this.button = new StartButton(this.ctx);
+    this.startButton = new StartButton(this.ctx);
+
   }
 
   render() {
-    this.button.draw();
+    // canvasの描画をクリアする
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    this.startButton.draw();
 
     // コールバック時のthisの値を，windowではなく現在のthis(Game)に設定する
     window.requestAnimationFrame(this.render.bind(this));
+  }
+
+  onClick(clickX, clickY) {
+    this.startButton.onClick(clickX, clickY);
   }
 }
