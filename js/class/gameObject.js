@@ -1,5 +1,9 @@
+// すべてのゲーム内に登場する要素はGameObjectを継承しなければならない！
 class GameObject {
   constructor(ctx) {
+    // idを持たせる！  
+    this.id  = idCounter;
+    idCounter += 1;
     this.ctx = ctx;
     this.x = 0;
     this.y = 0;

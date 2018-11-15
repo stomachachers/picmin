@@ -5,12 +5,12 @@ class Button extends GameObject {
 }
 
 class StartButton extends Button {
-  constructor(ctx, width, height) {
+  constructor(ctx) {
     super(ctx);
+    this.x = 285;
+    this.y = 600;
     this.width = 180;
     this.height = 60;
-    this.x = width / 2 - this.width / 2;
-    this.y = height / 4 * 3 - this.height;   
   }
 
   draw() {
@@ -27,8 +27,6 @@ class StartButton extends Button {
   onClick(clickX, clickY) {
     if (super.isClick(clickX, clickY)) {
       console.log('click');
-      //SCENE を TITLEからGAMEに変更させる。
-      // changeScene(GAME);  
     }
   }
 }

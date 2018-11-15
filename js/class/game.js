@@ -14,11 +14,11 @@ class Game {
     }
     console.log('canvas.width :', canvas.width);
     console.log('canvas.height:', canvas.height);
-
+    
     // canvasの描画コンテキストを取得する
     this.ctx = canvas.getContext('2d');
 
-    this.startButton = new StartButton(this.ctx);
+    this.startButton = new StartButton(this.ctx, canvas.width, canvas.height);
 
   }
 
