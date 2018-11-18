@@ -1,34 +1,45 @@
 class Button extends GameObject {
-  constructor(ctx) {
-    super(ctx);
+  constructor() {
+    super();
+  }
+
+  onClick() {
+    // どのボタンにも共通する処理
   }
 }
 
+
 class StartButton extends Button {
-  constructor(ctx, width, height) {
-    super(ctx);
+  constructor() {
+    super();
+
     this.width = 180;
     this.height = 60;
-    this.x = width / 2 - this.width / 2;
-    this.y = height / 4 * 3 - this.height;   
+    this.x = stage.canvas.width / 2;
+    this.y = stage.canvas.height / 4 * 3;
+
+    // ベース部分
+    this.base = new createjs.Shape();
+    this.base.graphics.beginFill('#f26b7a');
+    this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
+    this.base.graphics.endFill();
+    this.addChild(this.base);
+
+    // テキスト部分
+    this.text = new createjs.Text('START', '44px sans-serif', '#f0f2dc');
+    this.text.textAlign = 'center';
+    this.text.textBaseline = 'middle';
+    this.addChild(this.text);
+
+    stage.addChild(this);
+
+    this.addEventListener('click', this.onClick);
   }
 
-  draw() {
-    this.ctx.fillStyle = 'rgb(242, 107, 122)';
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
-
-    this.ctx.font = '44px serif';
-    this.ctx.textAlign = 'center';
-    this.ctx.textBaseline = 'middle';
-    this.ctx.fillStyle = 'rgb(240, 242, 220)';
-    this.ctx.fillText('START', this.x + this.width/2, this.y + this.height/2);
-  }
-
-  onClick(clickX, clickY) {
-    if (super.isClick(clickX, clickY)) {
-      console.log('click');
-      //SCENE を TITLEからGAMEに変更させる。
-      // changeScene(GAME);  
-    }
+  onClick() {
+    super.onClick();
+    // ゲームをスタートさせる処理
+    console.log('click');
+    game.sceneManager.switchScene(SCENE.GAME);
   }
 }

@@ -1,5 +1,8 @@
 class Game {
   constructor() {
+    // gameをグローバルオブジェクトにする
+    //window.game = this;
+
     // canvas要素を取得する
     let canvas = document.getElementById('canvas');
 
@@ -14,25 +17,20 @@ class Game {
     }
     console.log('canvas.width :', canvas.width);
     console.log('canvas.height:', canvas.height);
-    
-    // canvasの描画コンテキストを取得する
-    this.ctx = canvas.getContext('2d');
 
-    this.startButton = new StartButton(this.ctx, canvas.width, canvas.height);
+    // canvas要素をCreateJSで操作する
+    // stageはグローバルオブジェクトにする
+    window.stage = new createjs.Stage('canvas');
 
+    // 描画のタイミングモードをRAF（RequestAnimationFrame）に設定
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    createjs.Ticker.addEventListener('tick', this.render);
+
+    this.sceneManager = new SceneManager();
+    this.sceneManager.switchScene(SCENE.TITLE);
   }
 
   render() {
-    // canvasの描画をクリアする
-    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    this.startButton.draw();
-
-    // コールバック時のthisの値を，windowではなく現在のthis(Game)に設定する
-    window.requestAnimationFrame(this.render.bind(this));
-  }
-
-  onClick(clickX, clickY) {
-    this.startButton.onClick(clickX, clickY);
+    stage.update();
   }
 }
