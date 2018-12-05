@@ -1,4 +1,6 @@
 const CANVAS_WIDTH_PC = 750;
+const CELL_WIDTH = 70;
+const CELL_HEIGHT = CELL_WIDTH;
 
 const SCENE = {
   NONE : 0,
