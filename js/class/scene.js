@@ -9,10 +9,6 @@ class NoneScene extends Scene {
     super();
   }
 
-  render() {
-
-  }
-
   delete() {}
 }
 
@@ -21,9 +17,12 @@ class TitleScene extends Scene {
     super();
 
     this.startButton = new StartButton();
+    this.startButton.belongScene = this;
     // ハードコーディングは正義
-    this.title_bg = new Background();
+    this.titleBg = new Background();
+    this.titleBg.belongScene = this;
 
+    this.addChild(this.titleBg);
     this.addChild(this.startButton);
 
     game.stage.addChild(this);
@@ -35,13 +34,18 @@ class TitleScene extends Scene {
     // 背景のクリア
     // 本来はcrearRectで行うべき…？
     this.bg = new createjs.Shape();
-    this.bg.graphics.beginFill("#000000");
-    this.bg.graphics.drawRect(0,0,window.stage.canvas.width, window.stage.canvas.height);
+    this.bg.graphics.beginFill("#FFFFFF");
+    this.bg.graphics.drawRect(0,0,game.stage.canvas.width, game.stage.canvas.height);
     this.bg.graphics.endFill();
 
+    this.addChild(this.bg);
+
     // 要素の描画
-    this.title_bg.render();
-    this.startButton.render();
+    this.titleBg.render();
+
+    this.addChild(this.titleBg);
+    
+    // this.startButton.render();
 
   }
 
@@ -62,10 +66,6 @@ class GameScene extends Scene {
     this.addChild(this.player);
 
     game.stage.addChild(this);
-  }
-
-  render() {
-
   }
 
   delete() {
@@ -91,14 +91,5 @@ class SceneManager {
       this.gameScene = new GameScene();
       this.nowScene = this.gameScene;
     }
-  }
-
-  // added by Dozi on 2018-12-05 21:41
-  // SceneManagerにdrawSceneを追加。
-  // 各sceneにrender関数を追加。
-  // これにより、sceneからの描画が容易に。
-
-  drawScene() {
-    this.nowScene.render();
   }
 }

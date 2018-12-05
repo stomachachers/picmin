@@ -18,28 +18,20 @@ class StartButton extends Button {
     this.y = game.stage.canvas.height / 4 * 3;
     this.belongScene;    // 自身の所属するシーン
 
-    // changed by Dozi on 2018-12-05 22:04
-    // 各描画部分をrender関数へ移動
-
-    this.addEventListener('click', this.onClick.bind(this));
-  }
-
-  render() {
     // ベース部分
     this.base = new createjs.Shape();
     this.base.graphics.beginFill('#f26b7a');
     this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
     this.base.graphics.endFill();
     this.addChild(this.base);
-    
+        
     // テキスト部分
     this.text = new createjs.Text('START', '44px sans-serif', '#f0f2dc');
     this.text.textAlign = 'center';
     this.text.textBaseline = 'middle';
     this.addChild(this.text);
-    
-    // これまで移動させて大丈夫だったか…？
-    stage.addChild(this);
+
+    this.addEventListener('click', this.onClick.bind(this));
   }
 
   onClick() {

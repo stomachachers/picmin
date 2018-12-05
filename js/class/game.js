@@ -22,23 +22,16 @@ class Game {
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.addEventListener('tick', this.render);
 
-    // changed by Dozi on 2018-12-05 21:38
-    // sceneManagerをグローバルオブジェクトに変更
-    window.sceneManager = new SceneManager();
-  }
-
-  render() {
-    // 1秒に60回、特定のシーンのrenderを呼び出す
-    window.sceneManager.drawScene();
     this.sceneManager = new SceneManager();
+  }
+  render() { 
+    // 1秒に60回、特定のシーンのrenderを呼び出す
+    game.stage.update();
   }
 
   // Gameクラスのコンストラクタの処理が終えてからでないと，gameにアクセスできないため，メソッドを分割する
   setup() {
-    window.sceneManager.switchScene(SCENE.TITLE);
+    this.sceneManager.switchScene(SCENE.TITLE);
   }
 
-  render() {
-    game.stage.update();
-  }
 }
