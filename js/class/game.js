@@ -26,11 +26,14 @@ class Game {
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.addEventListener('tick', this.render);
 
-    this.sceneManager = new SceneManager();
-    this.sceneManager.switchScene(SCENE.TITLE);
+    // changed by Dozi on 2018-12-05 21:38
+    // sceneManagerをグローバルオブジェクトに変更
+    window.sceneManager = new SceneManager();
+    window.sceneManager.switchScene(SCENE.TITLE);
   }
 
   render() {
-    stage.update();
+    // 1秒に60回、特定のシーンのrenderを呼び出す
+    window.sceneManager.drawScene();
   }
 }
