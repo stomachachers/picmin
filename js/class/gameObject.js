@@ -7,5 +7,6 @@ class GameObject extends createjs.Container {
     this.y = 0;
     this.width = 0;
     this.height = 0;
+    this.belongScene;
   }
 }
