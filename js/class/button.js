@@ -14,8 +14,8 @@ class StartButton extends Button {
 
     this.width = 180;
     this.height = 60;
-    this.x = game.stage.canvas.width / 2;
-    this.y = game.stage.canvas.height / 4 * 3;
+    this.x = game.canvas.width / 2;
+    this.y = game.canvas.height / 4 * 3;
     this.belongScene;    // 自身の所属するシーン
 
     // ベース部分
@@ -45,8 +45,8 @@ class CrossButton extends Button {
   constructor() {
     super();
 
-    this.x = game.stage.canvas.width - 300;
-    this.y = game.stage.canvas.height - 300;
+    this.x = game.canvas.width - 200;
+    this.y = game.canvas.height - 200;
 
     // 上
     this.up = new createjs.Shape();
@@ -109,27 +109,27 @@ class CrossButton extends Button {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({y: this.belongScene.player.y - 100}, 500);
+    target.to({y: this.belongScene.player.y - CELL_HEIGHT}, 500);
   }
 
   onClickRight() {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({x: this.belongScene.player.x + 100}, 500);
+    target.to({x: this.belongScene.player.x + CELL_WIDTH}, 500);
   }
 
   onClickDown() {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({y: this.belongScene.player.y + 100}, 500);
+    target.to({y: this.belongScene.player.y + CELL_HEIGHT}, 500);
   }
 
   onClickLeft() {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({x: this.belongScene.player.x - 100}, 500);
+    target.to({x: this.belongScene.player.x - CELL_WIDTH}, 500);
   }
 }

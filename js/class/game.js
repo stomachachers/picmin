@@ -1,19 +1,19 @@
 class Game {
   constructor() {
     // canvas要素を取得する
-    let canvas = document.getElementById('canvas');
+    this.canvas = document.getElementById('canvas');
 
     // デバイスごとにcanvasのサイズを決定する
     if (getDevice() === 'sp') {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
     }
     if (getDevice() === 'pc') {
-      canvas.width = CANVAS_WIDTH_PC;
-      canvas.height = window.innerHeight;
+      this.canvas.width = CANVAS_WIDTH_PC;
+      this.canvas.height = window.innerHeight;
     }
-    console.log('canvas.width :', canvas.width);
-    console.log('canvas.height:', canvas.height);
+    console.log('canvas.width :', this.canvas.width);
+    console.log('canvas.height:', this.canvas.height);
 
     // canvas要素をCreateJSで操作する
     this.stage = new createjs.Stage('canvas');

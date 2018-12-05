@@ -17,6 +17,7 @@ class TitleScene extends Scene {
     super();
 
     this.startButton = new StartButton();
+    this.startButton.belongScene = this;
     this.addChild(this.startButton);
 
     game.stage.addChild(this);
@@ -31,12 +32,17 @@ class GameScene extends Scene {
   constructor() {
     super();
 
+    this.grid = new Grid();
+    this.grid.belongScene = this;
+    this.addChild(this.grid);
+
+    this.player = new Player();
+    this.player.belongScene = this;
+    this.addChild(this.player);
+
     this.crossButton = new CrossButton();
     this.crossButton.belongScene = this;
     this.addChild(this.crossButton);
-
-    this.player = new Player();
-    this.addChild(this.player);
 
     game.stage.addChild(this);
   }
