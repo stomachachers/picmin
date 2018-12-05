@@ -17,13 +17,13 @@ class TitleScene extends Scene {
     super();
 
     this.startButton = new StartButton();
-
     this.addChild(this.startButton);
-    stage.addChild(this);
+
+    game.stage.addChild(this);
   }
 
   delete() {
-    stage.removeChild(this);
+    game.stage.removeChild(this);
   }
 }
 
@@ -31,18 +31,25 @@ class GameScene extends Scene {
   constructor() {
     super();
 
-    this.addChild();
-    stage.addChild(this);
+    this.crossButton = new CrossButton();
+    this.crossButton.belongScene = this;
+    this.addChild(this.crossButton);
+
+    this.player = new Player();
+    this.addChild(this.player);
+
+    game.stage.addChild(this);
   }
 
   delete() {
-    stage.removeChild(this);
+    game.stage.removeChild(this);
   }
 }
 
 class SceneManager {
   constructor() {
-    this.nowScene = new NoneScene();
+    this.noneScene = new NoneScene();
+    this.nowScene = this.noneScene;
   }
 
   switchScene(scene) {

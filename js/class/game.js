@@ -1,8 +1,5 @@
 class Game {
   constructor() {
-    // gameをグローバルオブジェクトにする
-    //window.game = this;
-
     // canvas要素を取得する
     let canvas = document.getElementById('canvas');
 
@@ -19,18 +16,21 @@ class Game {
     console.log('canvas.height:', canvas.height);
 
     // canvas要素をCreateJSで操作する
-    // stageはグローバルオブジェクトにする
-    window.stage = new createjs.Stage('canvas');
+    this.stage = new createjs.Stage('canvas');
 
-    // 描画のタイミングモードをRAF（RequestAnimationFrame）に設定
+    // 描画のタイミングモードをRAF（RequestAnimationFrame）に設定する
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.addEventListener('tick', this.render);
 
     this.sceneManager = new SceneManager();
+  }
+
+  // Gameクラスのコンストラクタの処理が終えてからでないと，gameにアクセスできないため，メソッドを分割する
+  setup() {
     this.sceneManager.switchScene(SCENE.TITLE);
   }
 
   render() {
-    stage.update();
+    game.stage.update();
   }
 }
