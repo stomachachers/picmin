@@ -25,7 +25,7 @@ class Game {
     this.sceneManager = new SceneManager();
   }
   render() { 
-    // 1秒に60回、特定のシーンのrenderを呼び出す
+    // 1秒に60回、stageを更新する。
     game.stage.update();
   }
 

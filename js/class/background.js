@@ -2,32 +2,40 @@ class Background extends GameObject {
     constructor() {
         super();
 
-        this.width = game.stage.canvas.width;
-        this.height = game.stage.canvas.height;
+        this.width = game.stage.canvas.width * 2;
+        this.sizeX = 480;
+        this.sizeY = 480;
+        this.width = this.sizeX * 4;
+        this.height = game.stage.canvas.height * 2;
+        this.height = this.sizeY * 4;
         this.x = 0;
         this.y = 0;
         this.belongScene;
 
-        this.base = new createjs.Bitmap("img/1988.png");
-
-        // TODO createPutternする方法
-        this.addChild(this.base);
+	    this.img = document.getElementById("building");
+	    this.bg = new createjs.Shape();
+        this.bg.regX = this.width / 2;
+        this.bg.regY = this.height / 2;
+	    this.bg.graphics.beginBitmapFill(this.img, "repeat");
+	    this.bg.graphics.drawRect(0, 0, this.width, this.height);
+	    this.bg.graphics.endFill();
+        this.addChild(this.bg);
         
         this.addEventListener('tick', this.render.bind(this))
 
     }
 
     render() {
-        
-        // できれば、背景画像をスクロールさせたい。
-        let target = createjs.Tween.get(this.belongScene.titleBg);
-        target.to({x: this.belongScene.titleBg.x + 5});
-        if(this.belongScene.titleBg.x > game.stage.canvas.width) {
-            target.to({x: -480});
+        // 画面をスクロールさせるアニメーション
+        let bg = this.belongScene.titleBg;
+        let target = createjs.Tween.get(bg);
+        target.to({x: bg.x + 2});
+        if(bg.x > game.canvas.width) {
+            target.to({x: bg.x - bg.sizeX});
         }
-        target.to({y: this.belongScene.titleBg.y + 5});
-        if(this.belongScene.titleBg.y > game.stage.canvas.height) {
-            target.to({y: -480});
+        target.to({y: bg.y + 2});
+        if(bg.y > game.canvas.height) {
+            target.to({y: bg.y - bg.sizeY});
         }
     }
 }

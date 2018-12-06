@@ -28,7 +28,7 @@ class TitleScene extends Scene {
     game.stage.addChild(this);
   }
 
-  render() {
+  /*render() {
     // render関数記入例
     
     // 背景のクリア
@@ -47,7 +47,7 @@ class TitleScene extends Scene {
     
     // this.startButton.render();
 
-  }
+  }*/
 
   delete() {
     game.stage.removeChild(this);

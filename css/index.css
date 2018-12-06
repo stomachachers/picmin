@@ -7,6 +7,10 @@ body {
   overflow: hidden;
 }
 
+#item-container {
+  display: none;
+}
+
 #canvas-container {
   margin: 0px;
   padding: 0px;
