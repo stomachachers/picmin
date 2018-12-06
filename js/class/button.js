@@ -109,27 +109,27 @@ class CrossButton extends Button {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({y: this.belongScene.player.y - CELL_HEIGHT}, 500);
+    target.to({y: this.belongScene.player.y - CELL_HEIGHT}, this.belongScene.player.speed);
   }
 
   onClickRight() {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({x: this.belongScene.player.x + CELL_WIDTH}, 500);
+    target.to({x: this.belongScene.player.x + CELL_WIDTH}, this.belongScene.player.speed);
   }
 
   onClickDown() {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({y: this.belongScene.player.y + CELL_HEIGHT}, 500);
+    target.to({y: this.belongScene.player.y + CELL_HEIGHT}, this.belongScene.player.speed);
   }
 
   onClickLeft() {
     super.onClick();
 
     let target = createjs.Tween.get(this.belongScene.player);
-    target.to({x: this.belongScene.player.x - CELL_WIDTH}, 500);
+    target.to({x: this.belongScene.player.x - CELL_WIDTH}, this.belongScene.player.speed);
   }
 }

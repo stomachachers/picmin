@@ -12,10 +12,11 @@ class Player extends Human {
     this.height = 50;
     this.x = game.stage.canvas.width / 2;
     this.y = game.stage.canvas.height / 2;
+    this.speed = 300;
 
     this.body = new createjs.Shape();
     this.body.graphics.beginFill('#d9eb52');
-    this.body.graphics.drawCircle(0, 0, 30);
+    this.body.graphics.drawCircle(0, 0, CELL_WIDTH / 2 - 5);
     this.body.graphics.endFill();
 
     this.addChild(this.body);
