@@ -10,8 +10,8 @@ class Player extends Human {
 
     this.width = 50;
     this.height = 50;
-    this.x = game.stage.canvas.width / 2;
-    this.y = game.stage.canvas.height / 2;
+    this.x = game.width / 2;
+    this.y = game.height / 2;
     this.speed = 300;
 
     this.body = new createjs.Shape();

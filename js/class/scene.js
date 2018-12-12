@@ -36,6 +36,10 @@ class GameScene extends Scene {
   constructor() {
     super();
 
+    this.board = new Board();
+    this.board.belongScene = this;
+    this.addChild(this.board);
+
     this.grid = new Grid();
     this.grid.belongScene = this;
     this.addChild(this.grid);

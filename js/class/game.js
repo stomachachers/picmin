@@ -15,6 +15,9 @@ class Game {
     console.log('canvas.width :', this.canvas.width);
     console.log('canvas.height:', this.canvas.height);
 
+    this.width = this.canvas.width;
+    this.height = this.canvas.height;
+
     // canvas要素をCreateJSで操作する
     this.stage = new createjs.Stage('canvas');
 
