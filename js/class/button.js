@@ -47,18 +47,18 @@ class CrossButton extends Button {
   constructor() {
     super();
 
-    this.x = game.canvas.width - 200;
-    this.y = game.canvas.height - 200;
+    this.x = game.width - 100;
+    this.y = game.height - 100;
+
+    this.radius = 18;
+    this.color = '#ffffffaa';
 
     // 上
     this.up = new createjs.Shape();
-    this.up.x = 50;
-    this.up.y = 0;
-    this.up.graphics.beginFill('#87796f');
-    this.up.graphics.moveTo(0, 50);
-    this.up.graphics.lineTo(25, 0);
-    this.up.graphics.lineTo(50, 50);
-    this.up.graphics.lineTo(0, 50);
+    this.up.x = 0;
+    this.up.y = -35;
+    this.up.graphics.beginFill(this.color);
+    this.up.graphics.drawCircle(0, 0, this.radius);
     this.up.graphics.endFill();
     this.addChild(this.up);
 
@@ -66,13 +66,10 @@ class CrossButton extends Button {
 
     // 右
     this.right = new createjs.Shape();
-    this.right.x = 100;
-    this.right.y = 50;
-    this.right.graphics.beginFill('#87796f');
-    this.right.graphics.moveTo(0, 0);
-    this.right.graphics.lineTo(50, 25);
-    this.right.graphics.lineTo(0, 50);
-    this.right.graphics.lineTo(0, 0);
+    this.right.x = 35;
+    this.right.y = 0;
+    this.right.graphics.beginFill(this.color);
+    this.right.graphics.drawCircle(0, 0, this.radius);
     this.right.graphics.endFill();
     this.addChild(this.right);
 
@@ -80,13 +77,10 @@ class CrossButton extends Button {
 
     // 下
     this.down = new createjs.Shape();
-    this.down.x = 50;
-    this.down.y = 100;
-    this.down.graphics.beginFill('#87796f');
-    this.down.graphics.moveTo(0, 0);
-    this.down.graphics.lineTo(50, 0);
-    this.down.graphics.lineTo(25, 50);
-    this.down.graphics.lineTo(0, 0);
+    this.down.x = 0;
+    this.down.y = 35;
+    this.down.graphics.beginFill(this.color);
+    this.down.graphics.drawCircle(0, 0, this.radius);
     this.down.graphics.endFill();
     this.addChild(this.down);
 
@@ -94,13 +88,10 @@ class CrossButton extends Button {
 
     // 左
     this.left = new createjs.Shape();
-    this.left.x = 0;
-    this.left.y = 50;
-    this.left.graphics.beginFill('#87796f');
-    this.left.graphics.moveTo(50, 0);
-    this.left.graphics.lineTo(50, 50);
-    this.left.graphics.lineTo(0, 25);
-    this.left.graphics.lineTo(50, 0);
+    this.left.x = -35;
+    this.left.y = 0;
+    this.left.graphics.beginFill(this.color);
+    this.left.graphics.drawCircle(0, 0, this.radius);
     this.left.graphics.endFill();
     this.addChild(this.left);
 
