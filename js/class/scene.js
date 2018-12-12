@@ -16,38 +16,16 @@ class TitleScene extends Scene {
   constructor() {
     super();
 
+    this.background = new Background();
+    this.background.belongScene = this;
+    this.addChild(this.background);
+
     this.startButton = new StartButton();
     this.startButton.belongScene = this;
-    // ハードコーディングは正義
-    this.titleBg = new Background();
-    this.titleBg.belongScene = this;
-
-    this.addChild(this.titleBg);
     this.addChild(this.startButton);
 
     game.stage.addChild(this);
   }
-
-  /*render() {
-    // render関数記入例
-    
-    // 背景のクリア
-    // 本来はcrearRectで行うべき…？
-    this.bg = new createjs.Shape();
-    this.bg.graphics.beginFill("#FFFFFF");
-    this.bg.graphics.drawRect(0,0,game.stage.canvas.width, game.stage.canvas.height);
-    this.bg.graphics.endFill();
-
-    this.addChild(this.bg);
-
-    // 要素の描画
-    this.titleBg.render();
-
-    this.addChild(this.titleBg);
-    
-    // this.startButton.render();
-
-  }*/
 
   delete() {
     game.stage.removeChild(this);

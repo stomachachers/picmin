@@ -20,13 +20,9 @@ class Game {
 
     // 描画のタイミングモードをRAF（RequestAnimationFrame）に設定する
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    createjs.Ticker.addEventListener('tick', this.render);
+    createjs.Ticker.addEventListener('tick', this.render.bind(this));
 
     this.sceneManager = new SceneManager();
-  }
-  render() { 
-    // 1秒に60回、stageを更新する。
-    game.stage.update();
   }
 
   // Gameクラスのコンストラクタの処理が終えてからでないと，gameにアクセスできないため，メソッドを分割する
@@ -34,4 +30,7 @@ class Game {
     this.sceneManager.switchScene(SCENE.TITLE);
   }
 
+  render() { 
+    game.stage.update();
+  }
 }

@@ -16,7 +16,9 @@ class StartButton extends Button {
     this.height = 60;
     this.x = game.canvas.width / 2;
     this.y = game.canvas.height / 4 * 3;
-    this.belongScene;    // 自身の所属するシーン
+
+    // 自身の所属するシーン
+    this.belongScene;
 
     // ベース部分
     this.base = new createjs.Shape();
