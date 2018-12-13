@@ -6,8 +6,11 @@ class Background extends GameObject {
     this.y = 0;
     this.sizeX = 480;
     this.sizeY = 480;
-    this.width = this.sizeX * 4;
-    this.height = this.sizeY * 4;
+    this.scrollSpeed = 3;  
+    this.width = this.sizeX * (game.width / this.sizeX) * 2;
+    this.height = this.sizeY * (game.height / this.sizeY) * 2;
+    console.log(this.height);
+    console.log(game.height);  
     this.belongScene;
 
     this.img = document.getElementById('building');
@@ -30,13 +33,12 @@ class Background extends GameObject {
         bg.x -= bg.sizeX;
         target.to({x: bg.x - bg.sizeX});
     }
-    target.to({x: bg.x + 5});
+    target.to({x: bg.x + bg.scrollSpeed});
     if(bg.y > game.canvas.height) {
         bg.y -= bg.sizeY;
         target.to({y: bg.y - bg.sizeY});
     }
-    target.to({y: bg.y + 5});
+    target.to({y: bg.y + bg.scrollSpeed});
 
-    console.log("bg.x -> " + bg.x);  
   }
 }
