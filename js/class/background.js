@@ -26,13 +26,17 @@ class Background extends GameObject {
     // 画面をスクロールさせるアニメーション
     let bg = this;
     let target = createjs.Tween.get(bg);
-    target.to({x: bg.x + 2});
     if(bg.x > game.canvas.width) {
+        bg.x -= bg.sizeX;
         target.to({x: bg.x - bg.sizeX});
     }
-    target.to({y: bg.y + 2});
+    target.to({x: bg.x + 5});
     if(bg.y > game.canvas.height) {
+        bg.y -= bg.sizeY;
         target.to({y: bg.y - bg.sizeY});
     }
+    target.to({y: bg.y + 5});
+
+    console.log("bg.x -> " + bg.x);  
   }
 }
