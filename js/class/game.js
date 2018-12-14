@@ -9,9 +9,13 @@ class Game {
     this.width = this.canvas.width;
     this.height = this.canvas.height;
 
-    console.log(this.canvasContainer.offsetWidth);
     // デバイスの画面サイズからcanvasの拡大率を決定する
     if (getDevice() === 'sp') {
+      // スクロールを禁止する
+      window.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+      }, {passive: false});
+
       // 縦を基準に計算する
       if (this.canvasContainer.offsetHeight / 16 * 9 > this.canvasContainer.offsetWidth) {
         this.dispWidth = this.canvasContainer.offsetHeight / 16 * 9;
@@ -32,7 +36,6 @@ class Game {
       this.dispWidth = this.canvasContainer.offsetHeight / 16 * 9;
       this.dispHeight = this.canvasContainer.offsetHeight;
       this.scale = this.dispHeight / this.height;
-      console.log(this.canvasContainer.offsetWidth);
       this.canvas.style.transform = 'scale(' + this.scale + ')' + ' translateX(' + (this.canvasContainer.offsetWidth / 2 - this.dispWidth / 2) / this.scale + 'px)';
     }
     console.log('width:', this.dispWidth, ', height:', this.dispHeight);
