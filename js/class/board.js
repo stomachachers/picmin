@@ -5,8 +5,8 @@ class Board extends GameObject {
     this.x = 0;
     this.y = 0;
 
-    this.lenX = game.width / CELL_WIDTH;
-    this.lenY = game.height / CELL_HEIGHT;
+    this.lenX = 20;
+    this.lenY = 20;
 
     this.cells = [];
     this.createCells();

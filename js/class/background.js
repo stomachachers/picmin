@@ -8,9 +8,7 @@ class Background extends GameObject {
     this.sizeY = 480;
     this.scrollSpeed = 3;  
     this.width = this.sizeX * (game.width / this.sizeX) * 2;
-    this.height = this.sizeY * (game.height / this.sizeY) * 2;
-    console.log(this.height);
-    console.log(game.height);  
+    this.height = this.sizeY * (game.height / this.sizeY) * 2; 
     this.belongScene;
 
     this.img = document.getElementById('building');

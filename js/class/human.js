@@ -15,7 +15,7 @@ class Player extends Human {
     this.speed = 300;
 
     this.body = new createjs.Shape();
-    this.body.graphics.beginFill('#d9eb52');
+    this.body.graphics.beginFill('#dc143c');
     this.body.graphics.drawCircle(0, 0, CELL_WIDTH / 2 - 5);
     this.body.graphics.endFill();
 

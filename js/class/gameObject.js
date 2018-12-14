@@ -11,7 +11,32 @@ class GameObject extends createjs.Container {
   }
 }
 
-class Grid extends createjs.Container {
+class SideBar extends GameObject {
+  constructor() {
+    super();
+
+    this.width = game.dispWidth;
+    this.height = game.dispHeight;
+    this.x = 0;
+    this.y = 0;
+
+    this.left = new createjs.Shape();
+    this.left.graphics.beginFill('#00000020');
+    this.left.graphics.drawRect(0, 0, this.width, this.height);
+    this.left.graphics.endFill();
+    this.addChild(this.left);
+
+    this.right = new createjs.Shape();
+    this.right.graphics.beginFill('#00000020');
+    this.right.graphics.drawRect(game.width - this.width, 0, this.width, this.height);
+    this.right.graphics.endFill();
+    this.addChild(this.right);
+    console.log(this.left);
+    console.log(this.right);
+  }
+}
+
+class Grid extends GameObject {
   constructor() {
     super();
 
