@@ -1,82 +1,62 @@
 class Scene extends GameObject {
-  constructor() {
-    super();
+  constructor(parent) {
+    super(parent);
   }
-}
-
-class NoneScene extends Scene {
-  constructor() {
-    super();
-  }
-
-  delete() {}
 }
 
 class TitleScene extends Scene {
-  constructor() {
-    super();
+  constructor(parent) {
+    super(parent);
 
-    this.background = new Background();
-    this.background.belongScene = this;
+    this.background = new Background(this);
     this.addChild(this.background);
 
-    this.startButton = new StartButton();
-    this.startButton.belongScene = this;
+    this.startButton = new StartButton(this);
     this.addChild(this.startButton);
 
-    game.stage.addChild(this);
-  }
-
-  delete() {
-    game.stage.removeChild(this);
+    this.root.stage.addChild(this);
   }
 }
 
 class GameScene extends Scene {
-  constructor() {
-    super();
+  constructor(parent) {
+    super(parent);
 
-    this.board = new Board();
-    this.board.belongScene = this;
+    this.board = new Board(this);
     this.addChild(this.board);
 
-    this.grid = new Grid();
-    this.grid.belongScene = this;
+    this.grid = new Grid(this);
     this.addChild(this.grid);
 
-    this.player = new Player();
-    this.player.belongScene = this;
+    this.player = new Player(this);
     this.addChild(this.player);
 
-    this.crossButton = new CrossButton();
-    this.crossButton.belongScene = this;
+    this.crossButton = new CrossButton(this);
     this.addChild(this.crossButton);
 
-    game.stage.addChild(this);
-  }
-
-  delete() {
-    game.stage.removeChild(this);
+    this.root.stage.addChild(this);
   }
 }
 
-class SceneManager {
-  constructor() {
-    this.noneScene = new NoneScene();
-    this.nowScene = this.noneScene;
+class SceneManager extends GameObject {
+  constructor(parent) {
+    super(parent);
+
+    this.nowScene = null;
   }
 
-  switchScene(scene) {
-    this.nowScene.delete();
+  switch(scene) {
+    this.delete();
 
     if (scene === SCENE.TITLE) {
-      this.titleScene = new TitleScene();
-      this.nowScene = this.titleScene;
+      this.nowScene = new TitleScene(this);
     }
-
     if (scene === SCENE.GAME) {
-      this.gameScene = new GameScene();
-      this.nowScene = this.gameScene;
+      this.nowScene = new GameScene(this);
     }
+  }
+
+  delete() {
+    this.root.stage.removeChild(this.nowScene);
   }
 }

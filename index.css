@@ -22,11 +22,11 @@ body {
 #canvas-container {
   width: 100%;
   height: 100%;
-  background-color: #a9a9a9;
+  background-color: #a9a9a9ff;
 }
 
 #canvas {
-  background-color: #a9a9a9;
+  background-color: #ffffffaa;
   transform-origin: left top;
 
   /* ここに，JavaScriptから縮小と平行移動のCSSコードを書き込む */

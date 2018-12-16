@@ -1,6 +1,6 @@
 class Board extends GameObject {
-  constructor() {
-    super();
+  constructor(parent) {
+    super(parent);
 
     this.x = 0;
     this.y = 0;
@@ -30,8 +30,8 @@ class Board extends GameObject {
 }
 
 class Cell extends GameObject {
-  constructor(board, numX, numY) {
-    super();
+  constructor(parent, numX, numY) {
+    super(parent);
 
     this.numX = numX;
     this.numY = numY;

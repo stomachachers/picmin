@@ -1,24 +1,17 @@
 class Button extends GameObject {
-  constructor() {
-    super();
-  }
-
-  onClick() {
-    // どのボタンにも共通する処理
+  constructor(parent) {
+    super(parent);
   }
 }
 
 class StartButton extends Button {
-  constructor() {
-    super();
+  constructor(parent) {
+    super(parent);
 
     this.width = 180;
     this.height = 60;
-    this.x = game.canvas.width / 2;
-    this.y = game.canvas.height / 4 * 3;
-
-    // 自身の所属するシーン
-    this.belongScene;
+    this.x = this.root.width / 2;
+    this.y = this.root.height / 4 * 3;
 
     // ベース部分
     this.base = new createjs.Shape();
@@ -26,7 +19,7 @@ class StartButton extends Button {
     this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
     this.base.graphics.endFill();
     this.addChild(this.base);
-        
+
     // テキスト部分
     this.text = new createjs.Text('START', '44px sans-serif', '#f0f2dc');
     this.text.textAlign = 'center';
@@ -37,18 +30,16 @@ class StartButton extends Button {
   }
 
   onClick() {
-    super.onClick();
-
-    game.sceneManager.switchScene(SCENE.GAME);
+    this.root.sceneManager.switch(SCENE.GAME);
   }
 }
 
 class CrossButton extends Button {
-  constructor() {
-    super();
+  constructor(parent) {
+    super(parent);
 
-    this.x = game.width - 100;
-    this.y = game.height - 100;
+    this.x = this.root.width - 100;
+    this.y = this.root.height - 100;
 
     this.radius = 18;
     this.color = '#ffffffaa';
@@ -99,30 +90,22 @@ class CrossButton extends Button {
   }
 
   onClickUp() {
-    super.onClick();
-
-    let target = createjs.Tween.get(this.belongScene.player);
-    target.to({y: this.belongScene.player.y - CELL_HEIGHT}, this.belongScene.player.speed);
+    let target = createjs.Tween.get(this.parent.player);
+    target.to({y: this.parent.player.y - CELL_HEIGHT}, this.parent.player.speed);
   }
 
   onClickRight() {
-    super.onClick();
-
-    let target = createjs.Tween.get(this.belongScene.player);
-    target.to({x: this.belongScene.player.x + CELL_WIDTH}, this.belongScene.player.speed);
+    let target = createjs.Tween.get(this.parent.player);
+    target.to({x: this.parent.player.x + CELL_WIDTH}, this.parent.player.speed);
   }
 
   onClickDown() {
-    super.onClick();
-
-    let target = createjs.Tween.get(this.belongScene.player);
-    target.to({y: this.belongScene.player.y + CELL_HEIGHT}, this.belongScene.player.speed);
+    let target = createjs.Tween.get(this.parent.player);
+    target.to({y: this.parent.player.y + CELL_HEIGHT}, this.parent.player.speed);
   }
 
   onClickLeft() {
-    super.onClick();
-
-    let target = createjs.Tween.get(this.belongScene.player);
-    target.to({x: this.belongScene.player.x - CELL_WIDTH}, this.belongScene.player.speed);
+    let target = createjs.Tween.get(this.parent.player);
+    target.to({x: this.parent.player.x - CELL_WIDTH}, this.parent.player.speed);
   }
 }
