@@ -38,74 +38,59 @@ class CrossButton extends Button {
   constructor(parent) {
     super(parent);
 
-    this.x = this.root.width - 100;
-    this.y = this.root.height - 100;
+    this.x = this.root.width - 200;
+    this.y = this.root.height - 200;
 
-    this.radius = 18;
+    this.radius = 45;
+    this.interval = 90;
     this.color = '#ffffffaa';
 
     // 上
     this.up = new createjs.Shape();
     this.up.x = 0;
-    this.up.y = -35;
+    this.up.y = -1 * this.interval;
     this.up.graphics.beginFill(this.color);
     this.up.graphics.drawCircle(0, 0, this.radius);
     this.up.graphics.endFill();
     this.addChild(this.up);
 
-    this.up.addEventListener('click', this.onClickUp.bind(this));
+    this.up.addEventListener('click', this.onClick.bind(this, DIRECTION.UP));
 
     // 右
     this.right = new createjs.Shape();
-    this.right.x = 35;
+    this.right.x = this.interval;
     this.right.y = 0;
     this.right.graphics.beginFill(this.color);
     this.right.graphics.drawCircle(0, 0, this.radius);
     this.right.graphics.endFill();
     this.addChild(this.right);
 
-    this.right.addEventListener('click', this.onClickRight.bind(this));
+    this.right.addEventListener('click', this.onClick.bind(this, DIRECTION.RIGHT));
 
     // 下
     this.down = new createjs.Shape();
     this.down.x = 0;
-    this.down.y = 35;
+    this.down.y = this.interval;
     this.down.graphics.beginFill(this.color);
     this.down.graphics.drawCircle(0, 0, this.radius);
     this.down.graphics.endFill();
     this.addChild(this.down);
 
-    this.down.addEventListener('click', this.onClickDown.bind(this));
+    this.down.addEventListener('click', this.onClick.bind(this, DIRECTION.DOWN));
 
     // 左
     this.left = new createjs.Shape();
-    this.left.x = -35;
+    this.left.x = -1 * this.interval;
     this.left.y = 0;
     this.left.graphics.beginFill(this.color);
     this.left.graphics.drawCircle(0, 0, this.radius);
     this.left.graphics.endFill();
     this.addChild(this.left);
 
-    this.left.addEventListener('click', this.onClickLeft.bind(this));
+    this.left.addEventListener('click', this.onClick.bind(this, DIRECTION.LEFT));
   }
 
-  onClickUp() {
-    let target = createjs.Tween.get(this.parent.player);
-    target.to({y: this.parent.player.y - CELL_HEIGHT}, this.parent.player.speed);
-  }
-
-  onClickRight() {
-    let target = createjs.Tween.get(this.parent.player);
-    target.to({x: this.parent.player.x + CELL_WIDTH}, this.parent.player.speed);
-  }
-
-  onClickDown() {
-    let target = createjs.Tween.get(this.parent.player);
-    target.to({y: this.parent.player.y + CELL_HEIGHT}, this.parent.player.speed);
-  }
-
-  onClickLeft() {
-    let target = createjs.Tween.get(this.parent.player);
-    target.to({x: this.parent.player.x - CELL_WIDTH}, this.parent.player.speed);
+  onClick(direction) {
+    this.parent.player.move(direction);
   }
 }

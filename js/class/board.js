@@ -40,6 +40,7 @@ class Cell extends GameObject {
 
     this.numX = numX;
     this.numY = numY;
+
     this.width = CELL_WIDTH;
     this.height = CELL_HEIGHT;
     this.x = numX * CELL_WIDTH;
@@ -83,4 +84,3 @@ class Grid extends GameObject {
     this.addChild(this.line);
   }
 }
-
