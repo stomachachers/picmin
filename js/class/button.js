@@ -39,11 +39,17 @@ class CrossButton extends Button {
     super(parent);
 
     this.x = this.root.width - 200;
-    this.y = this.root.height - 200;
+    this.y = this.root.height - 200; //この位置を割合に変えて、キャンバスサイズに比例したボタンサイズ・位置にする
 
     this.radius = 45;
     this.interval = 90;
     this.color = '#ffffffaa';
+
+    this.shadowX = 5;
+    this.shadowY = 5;
+    this.shadowBlur = 10;
+    this.shadowColor = "#55555577";
+    this.shadow = new createjs.Shadow(this.shadowColor, this.shadowX, this.shadowY, this.shadowBlur);
 
     // 上
     this.up = new createjs.Shape();
@@ -52,6 +58,7 @@ class CrossButton extends Button {
     this.up.graphics.beginFill(this.color);
     this.up.graphics.drawCircle(0, 0, this.radius);
     this.up.graphics.endFill();
+    this.up.shadow = this.shadow;
     this.addChild(this.up);
 
     this.up.addEventListener('click', this.onClick.bind(this, DIRECTION.UP));
@@ -63,6 +70,7 @@ class CrossButton extends Button {
     this.right.graphics.beginFill(this.color);
     this.right.graphics.drawCircle(0, 0, this.radius);
     this.right.graphics.endFill();
+    this.right.shadow = this.shadow;
     this.addChild(this.right);
 
     this.right.addEventListener('click', this.onClick.bind(this, DIRECTION.RIGHT));
@@ -74,6 +82,7 @@ class CrossButton extends Button {
     this.down.graphics.beginFill(this.color);
     this.down.graphics.drawCircle(0, 0, this.radius);
     this.down.graphics.endFill();
+    this.down.shadow = this.shadow;
     this.addChild(this.down);
 
     this.down.addEventListener('click', this.onClick.bind(this, DIRECTION.DOWN));
@@ -85,6 +94,7 @@ class CrossButton extends Button {
     this.left.graphics.beginFill(this.color);
     this.left.graphics.drawCircle(0, 0, this.radius);
     this.left.graphics.endFill();
+    this.left.shadow = this.shadow;
     this.addChild(this.left);
 
     this.left.addEventListener('click', this.onClick.bind(this, DIRECTION.LEFT));
