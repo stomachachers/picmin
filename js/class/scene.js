@@ -28,9 +28,6 @@ class GameScene extends Scene {
     this.board = new Board(this);
     this.addChild(this.board);
 
-    this.grid = new Grid(this);
-    this.addChild(this.grid);
-
     this.player = new Player(this);
     this.addChild(this.player);
 

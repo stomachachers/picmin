@@ -7,11 +7,14 @@ class Board extends GameObject {
 
     this.width = this.lenX * CELL_WIDTH;
     this.height = this.lenY * CELL_HEIGHT;
-    this.x = 0;
+    this.x = (this.root.width - this.width) / 2;
     this.y = this.parent.statusBar.height;
 
     this.cells = [];
     this.createCells();
+
+    this.grid = new Grid(this);
+    this.addChild(this.grid);
   }
 
   createCells() {
@@ -51,3 +54,33 @@ class Cell extends GameObject {
     this.addChild(this.shape);
   }
 }
+
+class Grid extends GameObject {
+  constructor(parent) {
+    super(parent);
+
+    this.x = 0;
+    this.y = 0;
+    this.width = this.parent.width;
+    this.height = this.parent.height;
+
+    this.lenX = this.parent.lenX;
+    this.lenY = this.parent.lenY;
+
+    this.line = new createjs.Shape();
+    this.line.graphics.beginStroke('#999999aa');
+    this.line.graphics.setStrokeStyle(3);
+
+    for (let i = 0; i < this.lenX + 1; i++) {
+      this.line.graphics.moveTo(i * CELL_WIDTH, 0);
+      this.line.graphics.lineTo(i * CELL_WIDTH, this.height);
+    }
+    for (let i = 0; i < this.lenY + 1; i++) {
+      this.line.graphics.moveTo(0, i * CELL_HEIGHT);
+      this.line.graphics.lineTo(this.width, i * CELL_HEIGHT);
+    }
+
+    this.addChild(this.line);
+  }
+}
+
