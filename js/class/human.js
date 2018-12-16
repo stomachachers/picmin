@@ -11,6 +11,7 @@ class Player extends Human {
     this.posX = Math.floor(this.parent.board.lenX / 2);
     this.posY = 16;
     this.nowCell = this.parent.board.cells[this.posY][this.posX];
+    this.isMoved = false;
 
     this.width = CELL_WIDTH - 10;
     this.height = CELL_HEIGHT - 10;
@@ -27,24 +28,29 @@ class Player extends Human {
   }
 
   move(direction) {
-    let target = createjs.Tween.get(this);
-    if (direction === DIRECTION.UP && this.posY - 1 >= 0) {
-      this.posY--;
-      target.to({y: this.y - CELL_HEIGHT}, this.speed);
-    }
-    if (direction === DIRECTION.RIGHT && this.posX + 1 < this.parent.board.lenX) {
-      this.posX++;
-      target.to({x: this.x + CELL_WIDTH}, this.speed);
-    }
-    if (direction === DIRECTION.DOWN && this.posY + 1 < this.parent.board.lenY) {
-      this.posY++;
-      target.to({y: this.y + CELL_HEIGHT}, this.speed);
-    }
-    if (direction === DIRECTION.LEFT && this.posX - 1 >= 0) {
-      this.posX--;
-      target.to({x: this.x - CELL_WIDTH}, this.speed);
-    }
+    if (this.isMoved == false){
+      this.isMoved = true;
+      let target = createjs.Tween.get(this);
+      if (direction === DIRECTION.UP && this.posY - 1 >= 0) {
+        this.posY--;
+        target.to({y: this.y - CELL_HEIGHT}, this.speed);
+      }
+      if (direction === DIRECTION.RIGHT && this.posX + 1 < this.parent.board.lenX) {
+        this.posX++;
+        target.to({x: this.x + CELL_WIDTH}, this.speed);
+      }
+      if (direction === DIRECTION.DOWN && this.posY + 1 < this.parent.board.lenY) {
+        this.posY++;
+        target.to({y: this.y + CELL_HEIGHT}, this.speed);
+      }
+      if (direction === DIRECTION.LEFT && this.posX - 1 >= 0) {
+        this.posX--;
+        target.to({x: this.x - CELL_WIDTH}, this.speed);
+      }
 
-    this.nowCell = this.parent.board.cells[this.posY][this.posX];
+      this.nowCell = this.parent.board.cells[this.posY][this.posX];
+
+      setTimeout(function(){this.isMoved = false;}.bind(this), this.speed);
+    }
   }
 }
