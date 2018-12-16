@@ -22,6 +22,9 @@ class GameScene extends Scene {
   constructor(parent) {
     super(parent);
 
+    this.statusBar = new StatusBar(this);
+    this.addChild(this.statusBar);
+
     this.board = new Board(this);
     this.addChild(this.board);
 

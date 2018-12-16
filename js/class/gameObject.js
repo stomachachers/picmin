@@ -13,28 +13,20 @@ class GameObject extends createjs.Container {
   }
 }
 
-class SideBar extends GameObject {
-  constructor() {
-    super();
+class StatusBar extends GameObject {
+  constructor(parent) {
+    super(parent);
 
-    this.width = this.root.dispWidth;
-    this.height = this.root.dispHeight;
+    this.width = this.root.width;
+    this.height = 300;
     this.x = 0;
     this.y = 0;
 
-    this.left = new createjs.Shape();
-    this.left.graphics.beginFill('#00000020');
-    this.left.graphics.drawRect(0, 0, this.width, this.height);
-    this.left.graphics.endFill();
-    this.addChild(this.left);
-
-    this.right = new createjs.Shape();
-    this.right.graphics.beginFill('#00000020');
-    this.right.graphics.drawRect(this.root.width - this.width, 0, this.width, this.height);
-    this.right.graphics.endFill();
-    this.addChild(this.right);
-    console.log(this.left);
-    console.log(this.right);
+    this.base = new createjs.Shape();
+    this.base.graphics.beginFill('#33ccccff');
+    this.base.graphics.drawRect(this.x, this.y, this.width, this.height);
+    this.base.graphics.endFill();
+    this.addChild(this.base);
   }
 }
 

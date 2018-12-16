@@ -2,11 +2,13 @@ class Board extends GameObject {
   constructor(parent) {
     super(parent);
 
-    this.x = 0;
-    this.y = 0;
-
-    this.lenX = 20;
+    this.lenX = 13;
     this.lenY = 20;
+
+    this.width = this.lenX * CELL_WIDTH;
+    this.height = this.lenY * CELL_HEIGHT;
+    this.x = 0;
+    this.y = this.parent.statusBar.height;
 
     this.cells = [];
     this.createCells();
