@@ -21,7 +21,7 @@ class StartButton extends Button {
     this.addChild(this.base);
 
     // テキスト部分
-    this.text = new createjs.Text('START', '44px sans-serif', '#f0f2dc');
+    this.text = new createjs.Text('START', '44px mplus', '#f0f2dc');
     this.text.textAlign = 'center';
     this.text.textBaseline = 'middle';
     this.addChild(this.text);

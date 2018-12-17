@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'mplus';
+  src: url('font/rounded-mplus-1c-regular.ttf');
+}
+
 * {
   padding: 0;
   border: 0;
