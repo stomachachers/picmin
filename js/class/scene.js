@@ -11,6 +11,9 @@ class TitleScene extends Scene {
     this.background = new Background(this);
     this.addChild(this.background);
 
+    this.titleLogo = new TitleLogo(this);
+    this.addChild(this.titleLogo);
+
     this.startButton = new StartButton(this);
     this.addChild(this.startButton);
 
