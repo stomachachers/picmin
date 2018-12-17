@@ -38,11 +38,11 @@ class CrossButton extends Button {
   constructor(parent) {
     super(parent);
 
-    this.x = this.root.width - 200;
-    this.y = this.root.height - 200; //この位置を割合に変えて、キャンバスサイズに比例したボタンサイズ・位置にする
+    this.x = this.root.width - 300;
+    this.y = this.root.height - 300; //この位置を割合に変えて、キャンバスサイズに比例したボタンサイズ・位置にする
 
-    this.radius = 45;
-    this.interval = 90;
+    this.radius = 70;
+    this.interval = this.radius * 2;
     this.color = '#ffffffaa';
 
     this.shadowX = 5;
