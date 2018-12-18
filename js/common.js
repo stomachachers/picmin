@@ -7,6 +7,12 @@ const SCENE = {
   GAME : 2
 };
 
+const EVENT = {
+  NONE   : 0,
+  QUAKE  : 1,
+  TSUNAMI: 2
+};
+
 const DIRECTION = {
   UP        : 0,
   UP_RIGHT  : 1,
