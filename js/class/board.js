@@ -84,3 +84,11 @@ class Grid extends GameObject {
     this.addChild(this.line);
   }
 }
+
+class Overlay extends GameObject {
+  constructor(parent) {
+    super(parent);
+
+
+  }
+}

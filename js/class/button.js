@@ -8,8 +8,8 @@ class StartButton extends Button {
   constructor(parent) {
     super(parent);
 
-    this.width = 180;
-    this.height = 60;
+    this.width = 540;
+    this.height = 180;
     this.x = this.root.width / 2;
     this.y = this.root.height / 4 * 3;
 
@@ -21,7 +21,7 @@ class StartButton extends Button {
     this.addChild(this.base);
 
     // テキスト部分
-    this.text = new createjs.Text('START', '44px mplus', '#f0f2dc');
+    this.text = new createjs.Text('START', '132px mplus', '#f0f2dc');
     this.text.textAlign = 'center';
     this.text.textBaseline = 'middle';
     this.addChild(this.text);
@@ -102,5 +102,35 @@ class CrossButton extends Button {
 
   onClick(direction) {
     this.parent.player.move(direction);
+  }
+}
+
+class EndButton extends Button {
+  constructor(parent) {
+    super(parent);
+
+    this.width = 540;
+    this.height = 180;
+    this.x = this.root.width / 2;
+    this.y = this.root.height / 4 * 3;
+
+    // ベース部分
+    this.base = new createjs.Shape();
+    this.base.graphics.beginFill('#999999');
+    this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
+    this.base.graphics.endFill();
+    this.addChild(this.base);
+
+    // テキスト部分
+    this.text = new createjs.Text('タイトルへ', '100px mplus', '#f0f2dc');
+    this.text.textAlign = 'center';
+    this.text.textBaseline = 'middle';
+    this.addChild(this.text);
+
+    this.addEventListener('click', this.onClick.bind(this));
+  }
+
+  onClick() {
+    this.root.sceneManager.switch(SCENE.TITLE);
   }
 }

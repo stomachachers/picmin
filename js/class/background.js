@@ -1,6 +1,12 @@
 class Background extends GameObject {
   constructor(parent) {
     super(parent);
+  }
+}
+
+class TitleBackground extends Background {
+  constructor(parent) {
+    super(parent);
 
     this.x = 0;
     this.y = 0;
@@ -36,5 +42,32 @@ class Background extends GameObject {
       target.to({y: bg.y - bg.sizeY});
     }
     target.to({y: bg.y + bg.scrollSpeed});
+  }
+}
+
+class GameoverBackground extends Background {
+  constructor(parent) {
+    super(parent);
+
+    this.width = this.root.width;
+    this.height = this.root.height;
+    this.x = 0;
+    this.y = 0;
+
+
+    // 背景部分
+    this.shape = new createjs.Shape();
+    this.shape.graphics.beginFill('#ffffff');
+    this.shape.graphics.drawRect(this.x, this.y, this.width, this.height);
+    this.shape.graphics.endFill();
+    this.addChild(this.shape);
+
+    // ゲームオーバーテキスト
+    this.text = new createjs.Text('ゲームオーバー！', '120px mplus', '#333333');
+    this.text.textAlign = 'center';
+    this.text.textBaseline = 'middle';
+    this.text.x = this.root.width / 2;
+    this.text.y = this.root.height * 0.3;
+    this.addChild(this.text);
   }
 }

@@ -8,7 +8,7 @@ class TitleScene extends Scene {
   constructor(parent) {
     super(parent);
 
-    this.background = new Background(this);
+    this.background = new TitleBackground(this);
     this.addChild(this.background);
 
     this.titleLogo = new TitleLogo(this);
@@ -41,6 +41,20 @@ class GameScene extends Scene {
   }
 }
 
+class GameoverScene extends GameObject {
+  constructor(parent) {
+    super(parent);
+
+    this.background = new GameoverBackground(this);
+    this.addChild(this.background);
+
+    this.endButton = new EndButton(this);
+    this.addChild(this.endButton);
+
+    this.root.stage.addChild(this);
+  }
+}
+
 class SceneManager extends GameObject {
   constructor(parent) {
     super(parent);
@@ -56,6 +70,9 @@ class SceneManager extends GameObject {
     }
     if (scene === SCENE.GAME) {
       this.nowScene = new GameScene(this);
+    }
+    if (scene === SCENE.GAMEOVER) {
+      this.nowScene = new GameoverScene(this);
     }
   }
 

@@ -4,7 +4,8 @@ const CELL_HEIGHT = CELL_WIDTH;
 const SCENE = {
   NONE : 0,
   TITLE: 1,
-  GAME : 2
+  GAME : 2,
+  GAMEOVER : 3
 };
 
 const DIRECTION = {
