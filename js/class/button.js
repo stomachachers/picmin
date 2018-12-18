@@ -1,6 +1,13 @@
 class Button extends GameObject {
   constructor(parent) {
     super(parent);
+
+    // 全ボタンに影をつける
+    this.shadowX = 5;
+    this.shadowY = 5;
+    this.shadowBlur = 10;
+    this.shadowColor = "#55555577";
+    this.shadow = new createjs.Shadow(this.shadowColor, this.shadowX, this.shadowY, this.shadowBlur);
   }
 }
 
@@ -11,13 +18,14 @@ class StartButton extends Button {
     this.width = 540;
     this.height = 180;
     this.x = this.root.width / 2;
-    this.y = this.root.height / 4 * 3;
+    this.y = this.root.height / 4 * 3 - 180;
 
     // ベース部分
     this.base = new createjs.Shape();
     this.base.graphics.beginFill('#f26b7a');
     this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
     this.base.graphics.endFill();
+    this.base.shadow = this.shadow;
     this.addChild(this.base);
 
     // テキスト部分
@@ -34,6 +42,68 @@ class StartButton extends Button {
   }
 }
 
+class OptionButton extends Button {
+  constructor(parent) {
+    super(parent);
+
+    this.width = 540;
+    this.height = 180;
+    this.x = this.root.width / 2;
+    this.y = this.root.height / 4 * 3 + 180;
+
+    // ベース部分
+    this.base = new createjs.Shape();
+    this.base.graphics.beginFill('#fc2374');
+    this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
+    this.base.graphics.endFill();
+    this.base.shadow = this.shadow;
+    this.addChild(this.base);
+
+    // テキスト部分
+    this.text = new createjs.Text('OPTION', '125px mplus', '#f0f2dc');
+    this.text.textAlign = 'center';
+    this.text.textBaseline = 'middle';
+    this.addChild(this.text);
+
+    this.addEventListener('click', this.onClick.bind(this));
+  }
+
+  onClick() {
+    this.root.sceneManager.switch(SCENE.OPTION);
+  }
+}
+
+class ToTitleButton extends Button {
+  constructor(parent, x, y) {
+    super(parent);
+
+    this.width = 540;
+    this.height = 180;
+    this.x = x;
+    this.y = y;
+
+    // ベース部分
+    this.base = new createjs.Shape();
+    this.base.graphics.beginFill('#999999');
+    this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
+    this.base.graphics.endFill();
+    this.base.shadow = this.shadow;
+    this.addChild(this.base);
+
+    // テキスト部分
+    this.text = new createjs.Text('タイトルへ', '100px mplus', '#f0f2dc');
+    this.text.textAlign = 'center';
+    this.text.textBaseline = 'middle';
+    this.addChild(this.text);
+
+    this.addEventListener('click', this.onClick.bind(this));
+  }
+
+  onClick() {
+    this.root.sceneManager.switch(SCENE.TITLE);
+  }
+}
+
 class CrossButton extends Button {
   constructor(parent) {
     super(parent);
@@ -44,12 +114,6 @@ class CrossButton extends Button {
     this.radius = 70;
     this.interval = this.radius * 2;
     this.color = '#ffffffaa';
-
-    this.shadowX = 5;
-    this.shadowY = 5;
-    this.shadowBlur = 10;
-    this.shadowColor = "#55555577";
-    this.shadow = new createjs.Shadow(this.shadowColor, this.shadowX, this.shadowY, this.shadowBlur);
 
     // 上
     this.up = new createjs.Shape();
@@ -105,32 +169,25 @@ class CrossButton extends Button {
   }
 }
 
-class EndButton extends Button {
+class DebugButton extends Button {
   constructor(parent) {
     super(parent);
 
-    this.width = 540;
-    this.height = 180;
-    this.x = this.root.width / 2;
-    this.y = this.root.height / 4 * 3;
+    this.shape = new createjs.Shape();
+    // 右上
+    this.x = this.root.width - 100;
+    this.y = 100;
+    this.radius = 50;
+    this.shape.graphics.beginFill('#ac62ffaa');
+    this.shape.graphics.drawCircle(0, 0, this.radius);
+    this.shape.graphics.endFill();
+    this.shape.shadow = this.shadow;
+    this.addChild(this.shape);
 
-    // ベース部分
-    this.base = new createjs.Shape();
-    this.base.graphics.beginFill('#999999');
-    this.base.graphics.drawRoundRect(-1 * this.width / 2, -1 * this.height / 2, this.width, this.height, 10);
-    this.base.graphics.endFill();
-    this.addChild(this.base);
-
-    // テキスト部分
-    this.text = new createjs.Text('タイトルへ', '100px mplus', '#f0f2dc');
-    this.text.textAlign = 'center';
-    this.text.textBaseline = 'middle';
-    this.addChild(this.text);
-
-    this.addEventListener('click', this.onClick.bind(this));
+    this.shape.addEventListener('click', this.onClick.bind(this));
   }
 
   onClick() {
-    this.root.sceneManager.switch(SCENE.TITLE);
+    this.parent.debugInfo.changeVisible();
   }
 }

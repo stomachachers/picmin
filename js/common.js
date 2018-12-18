@@ -2,10 +2,11 @@ const CELL_WIDTH = 80;
 const CELL_HEIGHT = CELL_WIDTH;
 
 const SCENE = {
-  NONE : 0,
-  TITLE: 1,
-  GAME : 2,
-  GAMEOVER : 3
+  NONE     : 0,
+  TITLE    : 1,
+  OPTION   : 2,
+  GAME     : 3,
+  GAMEOVER : 4
 };
 
 const EVENT = {

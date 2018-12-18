@@ -11,6 +11,9 @@ class SceneManager extends GameObject {
     if (scene === SCENE.TITLE) {
       this.nowScene = new TitleScene(this);
     }
+    if (scene === SCENE.OPTION) {
+      this.nowScene = new OptionScene(this);
+    }
     if (scene === SCENE.GAME) {
       this.nowScene = new GameScene(this);
     }
@@ -50,6 +53,20 @@ class TitleScene extends Scene {
 
     this.startButton = new StartButton(this);
     this.addChild(this.startButton);
+
+    this.optionButton = new OptionButton(this);
+    this.addChild(this.optionButton);
+  }
+}
+
+class OptionScene extends Scene {
+  constructor(parent) {
+    super(parent);
+    this.background = new SimpleBackground(this, '#eeeeee');
+    this.addChild(this.background);
+
+    this.backButton = new ToTitleButton(this, this.root.width / 2, this.root.height / 4 * 3);
+    this.addChild(this.backButton);
   }
 }
 
@@ -68,6 +85,12 @@ class GameScene extends Scene {
 
     this.crossButton = new CrossButton(this);
     this.addChild(this.crossButton);
+
+    this.debugButton = new DebugButton(this);
+    this.addChild(this.debugButton);
+
+    this.debugInfo = new DebugOverlay(this);
+    this.addChild(this.debugInfo);
   }
 
   tick() {
@@ -87,7 +110,10 @@ class GameoverScene extends GameObject {
     this.background = new GameoverBackground(this);
     this.addChild(this.background);
 
-    this.endButton = new EndButton(this);
+    this.gameoverLogo = new GameoverLogo(this);
+    this.addChild(this.gameoverLogo);
+
+    this.endButton = new ToTitleButton(this, this.root.width / 2, this.root.height / 4 * 3);
     this.addChild(this.endButton);
 
     this.root.stage.addChild(this);

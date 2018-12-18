@@ -45,8 +45,10 @@ class TitleBackground extends Background {
   }
 }
 
-class GameoverBackground extends Background {
-  constructor(parent) {
+
+// 単色の背景はこれ
+class SimpleBackground extends Background {
+  constructor(parent, color = '#ffffff') {
     super(parent);
 
     this.width = this.root.width;
@@ -57,17 +59,9 @@ class GameoverBackground extends Background {
 
     // 背景部分
     this.shape = new createjs.Shape();
-    this.shape.graphics.beginFill('#ffffff');
+    this.shape.graphics.beginFill(color);
     this.shape.graphics.drawRect(this.x, this.y, this.width, this.height);
     this.shape.graphics.endFill();
     this.addChild(this.shape);
-
-    // ゲームオーバーテキスト
-    this.text = new createjs.Text('ゲームオーバー！', '120px mplus', '#333333');
-    this.text.textAlign = 'center';
-    this.text.textBaseline = 'middle';
-    this.text.x = this.root.width / 2;
-    this.text.y = this.root.height * 0.3;
-    this.addChild(this.text);
   }
 }
