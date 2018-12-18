@@ -4,8 +4,8 @@ class Asset extends GameObject{
   }
 }
 
-class TitleLogo extends Asset{
-  constructor(parent){
+class TitleLogo extends Asset {
+  constructor(parent) {
     super(parent);
 
     this.x = this.root.width / 2;
@@ -17,5 +17,33 @@ class TitleLogo extends Asset{
     this.logo = new createjs.Bitmap(this.logoImg);
 
     this.addChild(this.logo);
+  }
+}
+
+class GameoverLogo extends Asset {
+  constructor(parent) {
+    // ゲームオーバーテキスト
+    super(parent);
+
+    this.text = new createjs.Text('ゲームオーバー！', '120px mplus', '#333333');
+    this.text.textAlign = 'center';
+    this.text.textBaseline = 'middle';
+    this.text.x = this.root.width / 2;
+    this.text.y = this.root.height * 0.3;
+    this.addChild(this.text);
+  }
+}
+
+// 汎用テキストオブジェクト
+class GeneralText extends Asset {
+  constructor(parent, msg, x, y, font, color = '#000000') {
+    super(parent);
+
+    this.text = new createjs.Text(msg, font, color);
+    this.text.textAlign = 'left';
+    this.text.textBaseline = 'top';
+    this.text.x = x;
+    this.text.y = y;
+    this.addChild(this.text);
   }
 }
