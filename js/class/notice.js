@@ -8,6 +8,8 @@ class EventNotice extends Notice {
   constructor(parent) {
     super(parent);
 
+    this.type = this.parent.type;
+
     this.x = this.root.width / 2;
     this.y = this.root.height / 4;
     this.width = 600;
@@ -21,7 +23,13 @@ class EventNotice extends Notice {
     this.base.graphics.endFill();
     this.addChild(this.base);
 
-    this.text = new createjs.Text('地震発生!', '100px mplus', '#f0f2dc');
+    if (this.type === EVENT.QUAKE) {
+      this.textBody = '地震発生!';
+    }
+    if (this.type === EVENT.TSUNAMI) {
+      this.textBody = '津波到達!';
+    }
+    this.text = new createjs.Text(this.textBody, '100px mplus', '#f0f2dc');
     this.text.textAlign = 'center';
     this.text.textBaseline = 'middle';
     

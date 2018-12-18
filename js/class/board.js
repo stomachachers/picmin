@@ -32,6 +32,40 @@ class Board extends GameObject {
       }
     }
   }
+
+  update() {
+    let buff = new Array(this.lenY);
+
+    for (let i = 0; i < this.lenY; i++) {
+      buff[i] = new Array(this.lenX);
+    }
+
+    for (let i = 0; i < this.lenY; i++) {
+      for (let j = 0; j < this.lenX; j++) {
+        if (this.cells[i][j].state === MAP_STATE.FLOOD) {
+          if (i - 1 >= 0) {
+            buff[i-1][j] = MAP_STATE.FLOOD;
+          }
+          if (i + 1 < this.lenY) {
+            buff[i+1][j] = MAP_STATE.FLOOD;
+          }
+          if (j - 1 >= 0) {
+            buff[i][j-1] = MAP_STATE.FLOOD;
+          }
+          if (j + 1 < this.lenX) {
+            buff[i][j+1] = MAP_STATE.FLOOD;
+          }
+        }
+      }
+    }
+
+    for (let i = 0; i < this.lenY; i++) {
+      for (let j = 0; j < this.lenX; j++) {
+        this.cells[i][j].state = buff[i][j];
+        this.cells[i][j].update();
+      }
+    }
+  }
 }
 
 class Cell extends GameObject {
@@ -48,11 +82,33 @@ class Cell extends GameObject {
 
     this.type = MAP[numY][numX];
 
+    if (this.type === MAP_TYPE.SEA) {
+      this.state = MAP_STATE.FLOOD;
+    }
+    else {
+      this.state = MAP_STATE.NONE;
+    }
+
     this.shape = new createjs.Shape();
     this.shape.graphics.beginFill(MAP_COLOR[this.type]);
     this.shape.graphics.drawRect(0, 0, CELL_WIDTH, CELL_HEIGHT);
     this.shape.graphics.endFill();
     this.addChild(this.shape);
+  }
+
+  update() {
+    this.removeChild(this.overlay);
+    this.overlay = new createjs.Shape();
+    if (this.type === MAP_TYPE.SEA) {
+      this.overlay.color = MAP_OVERCOLOR[MAP_STATE.NONE];
+    }
+    else {
+      this.overlay.color = MAP_OVERCOLOR[this.state];
+    }
+    this.overlay.graphics.beginFill(this.overlay.color);
+    this.overlay.graphics.drawRect(0, 0, CELL_WIDTH, CELL_HEIGHT);
+    this.overlay.graphics.endFill();
+    this.addChild(this.overlay);
   }
 }
 

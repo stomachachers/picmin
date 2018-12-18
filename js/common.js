@@ -36,7 +36,11 @@ const MAP_TYPE = {
 };
 
 // マップの状態
-const MAP_STATE = {};
+const MAP_STATE = {
+  NONE : 0,
+  DUST : 1,
+  FLOOD: 2
+};
 
 // マップの配色
 const MAP_COLOR = {
@@ -45,6 +49,12 @@ const MAP_COLOR = {
   2: '#ffebcd',
   3: '#008000',
   4: '#c0c0c0'
+};
+
+const MAP_OVERCOLOR = {
+  0: '#00000000',
+  1: '#ffffff00',
+  2: '#cc996650'
 };
 
 // マップのダミーデータ

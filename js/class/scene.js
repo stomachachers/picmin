@@ -96,9 +96,15 @@ class GameScene extends Scene {
   tick() {
     super.tick();
 
-    console.log(this.prevTime, this.time);
-    if (this.prevTime !== this.time && this.time === 5) {
+    if (this.prevTime !== this.time) {
+      console.log(this.time);
+    }
+
+    if (this.prevTime !== this.time && this.time === 1) {
       this.root.eventManager.generate(EVENT.QUAKE);
+    }
+    if (this.prevTime !== this.time && this.time === 5) {
+      this.root.eventManager.generate(EVENT.TSUNAMI);
     }
   }
 }
