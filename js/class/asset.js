@@ -25,7 +25,7 @@ class GameoverLogo extends Asset {
     // ゲームオーバーテキスト
     super(parent);
 
-    this.text = new createjs.Text('ゲームオーバー！', '120px mplus', '#333333');
+    this.text = new createjs.Text('ゲームオーバー!', '120px mplus-bold', '#333333');
     this.text.textAlign = 'center';
     this.text.textBaseline = 'middle';
     this.text.x = this.root.width / 2;

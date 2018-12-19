@@ -113,10 +113,12 @@ class GameScene extends Scene {
   tick() {
     super.tick();
 
+    this.statusBar.tick();
     this.debugInfo.tick();
 
     if (this.prevTime !== this.time) {
       console.log(this.time);
+      this.root.score += 10;
     }
 
     if (this.prevTime !== this.time && this.time === 1) {

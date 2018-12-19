@@ -27,5 +27,14 @@ class StatusBar extends GameObject {
     this.base.graphics.drawRect(this.x, this.y, this.width, this.height);
     this.base.graphics.endFill();
     this.addChild(this.base);
+
+    this.score = new createjs.Text('score : ' + String(this.root.score), '50px mplus-bold', '#ffffff');
+    this.score.x = 100;
+    this.score.y = 100;
+    this.addChild(this.score);
+  }
+
+  tick() {
+    this.score.text = 'score : ' + String(this.root.score);
   }
 }

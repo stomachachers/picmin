@@ -3,6 +3,11 @@
   src: url('font/rounded-mplus-1c-regular.ttf');
 }
 
+@font-face {
+  font-family: 'mplus-bold';
+  src: url('font/rounded-mplus-1c-bold.ttf');
+}
+
 * {
   padding: 0;
   border: 0;

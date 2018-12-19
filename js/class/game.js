@@ -45,12 +45,12 @@ class Game {
     // canvas要素をCreateJSで操作する
     this.stage = new createjs.Stage('canvas');
 
-    this.timer = new Timer(this);
-
     // 描画のタイミングモードをRAF（RequestAnimationFrame）に設定する
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.addEventListener('tick', this.tick.bind(this));
 
+    this.score = 0;
+    this.timer = new Timer(this);
     this.sceneManager = new SceneManager(this);
     this.sceneManager.switch(SCENE.TITLE);
 
