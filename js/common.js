@@ -1,4 +1,4 @@
-const CELL_WIDTH = 80;
+const CELL_WIDTH = 83;
 const CELL_HEIGHT = CELL_WIDTH;
 
 const SCENE = {

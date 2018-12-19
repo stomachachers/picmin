@@ -11,36 +11,36 @@ class Game {
     this.root = this;
 
     if (getDevice() === 'sp') {
-      // スマートフォンの場合，スクロールを禁止する
+      // スクロールを禁止する
       window.addEventListener('touchmove', function(event) {
         event.preventDefault();
       }, {passive: false});
 
-      // 縦を基準に計算する
-      if (this.canvasContainer.offsetHeight / 16 * 9 > this.canvasContainer.offsetWidth) {
-        this.dispWidth = this.canvasContainer.offsetHeight / 16 * 9;
-        this.dispHeight = this.canvasContainer.offsetHeight;
+      // 縦を画面サイズに合わせる場合
+      if (window.innerHeight / 16 * 9 <= window.innerWidth) {
+        this.dispHeight = window.innerHeight;
+        this.dispWidth = this.dispHeight / 16 * 9;
         this.scale = this.dispHeight / this.height;
-        this.transX = (this.canvasContainer.offsetHeight / 2 - this.dispHeight / 2) / this.scale;
+        this.canvas.style.transform = 'translateX(' + (window.innerWidth / 2 - this.dispWidth / 2) + 'px) scale(' + this.scale + ')';
       }
-      // 横を基準に計算する
-      if (this.canvasContainer.offsetWidth / 9 * 16 > this.canvasContainer.offsetWidth) {
-        this.dispWidth = this.canvasContainer.offsetWidth;
-        this.dispHeight = this.canvasContainer.offsetWidth / 9 * 16;
+      // 横を画面サイズに合わせる場合
+      if (window.innerHeight / 16 * 9 > window.innerWidth) {
+        this.dispWidth = window.innerWidth;
+        this.dispHeight = this.dispWidth / 9 * 16;
         this.scale = this.dispWidth / this.width;
-        this.transX = (this.canvasContainer.offsetWidth / 2 - this.dispWidth / 2) / this.scale;
+        this.canvas.style.transform = 'translateX(' + (window.innerWidth / 2 - this.dispWidth / 2) + 'px) scale(' + this.scale + ')';
       }
     }
     if (getDevice() === 'pc') {
-      // 縦を基準に計算する
-      this.dispWidth = this.canvasContainer.offsetHeight / 16 * 9;
-      this.dispHeight = this.canvasContainer.offsetHeight;
+      // 縦を画面サイズに合わせる
+      this.dispHeight = window.innerHeight;
+      this.dispWidth = this.dispHeight / 16 * 9;
       this.scale = this.dispHeight / this.height;
-      this.transX = (this.canvasContainer.offsetWidth / 2 - this.dispWidth / 2) / this.scale;
+      this.canvas.style.transform = 'translateX(' + (window.innerWidth / 2 - this.dispWidth / 2) + 'px) scale(' + this.scale + ')';
     }
-
-    this.canvas.style.transform = 'scale(' + this.scale + ')' + ' translateX(' + this.transX + 'px)';
-    console.log('width:', this.dispWidth, ', height:', this.dispHeight);
+    this.canvasContainer.style.height = this.dispHeight + 'px';
+    document.body.style.height = this.dispHeight + 'px';
+    //document.html.style.height = this.dispHeight + 'px';
 
     // canvas要素をCreateJSで操作する
     this.stage = new createjs.Stage('canvas');

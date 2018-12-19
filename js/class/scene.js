@@ -80,6 +80,9 @@ class OptionScene extends Scene {
 
     this.backButton = new ToTitleButton(this, this.root.width / 2, this.root.height / 4 * 3);
     this.addChild(this.backButton);
+
+    this.debugInfo = new DebugOption(this);
+    this.addChild(this.debugInfo);
   }
 
   tick() {

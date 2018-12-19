@@ -18,7 +18,7 @@ class StatusBar extends GameObject {
     super(parent);
 
     this.width = this.root.width;
-    this.height = 300;
+    this.height = 260;
     this.x = 0;
     this.y = 0;
 

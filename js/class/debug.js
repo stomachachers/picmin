@@ -24,3 +24,16 @@ class DebugOverlay extends GameObject {
     this.playerPosY.text.text = 'y: ' + this.parent.player.posY;
   }
 }
+
+class DebugOption extends GameObject {
+  constructor(parent) {
+    super(parent);
+
+    this.x = 100;
+    this.y = 100;
+
+    let canvasContainer = document.getElementById('canvas-container');
+    this.info = new createjs.Text(document.body.clientHeight+' '+window.innerHeight , '50px mplus-bold', '#000000');
+    this.addChild(this.info);
+  }
+}
