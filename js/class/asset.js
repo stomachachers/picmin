@@ -36,12 +36,12 @@ class GameoverLogo extends Asset {
 
 // 汎用テキストオブジェクト
 class GeneralText extends Asset {
-  constructor(parent, msg, x, y, font, color = '#000000') {
+  constructor(parent, msg, x, y, font, color = '#000000', align = 'left', baseline = 'top') {
     super(parent);
 
     this.text = new createjs.Text(msg, font, color);
-    this.text.textAlign = 'left';
-    this.text.textBaseline = 'top';
+    this.text.textAlign = align;
+    this.text.textBaseline = baseline;
     this.text.x = x;
     this.text.y = y;
     this.addChild(this.text);
