@@ -148,6 +148,9 @@ class GameoverScene extends Scene {
     this.gameoverLogo = new GameoverLogo(this);
     this.addChild(this.gameoverLogo);
 
+    this.scoreInfo = new GeneralText(this, 'score: ' + this.root.score, this.root.width / 2, this.root.height / 2, '100px mplus');
+    this.addChild(this.scoreInfo);
+
     this.endButton = new ToTitleButton(this, this.root.width / 2, this.root.height / 4 * 3);
     this.addChild(this.endButton);
   }
