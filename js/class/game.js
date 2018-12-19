@@ -49,7 +49,6 @@ class Game {
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.addEventListener('tick', this.tick.bind(this));
 
-    this.score = 0;
     this.timer = new Timer(this);
     this.sceneManager = new SceneManager(this);
     this.sceneManager.switch(SCENE.TITLE);

@@ -54,6 +54,8 @@ class TitleScene extends Scene {
   constructor(parent) {
     super(parent);
 
+    this.root.score = 0;
+
     this.background = new TitleBackground(this);
     this.addChild(this.background);
 
