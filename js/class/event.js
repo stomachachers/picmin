@@ -30,6 +30,15 @@ class EventManager extends GameObject {
     }
   }
 
+  deleteAll() {
+    for (let i = 0; i < this.eventList.length; i++) {
+      if (this.eventList[i] !== null) {
+        this.root.stage.removeChild(this.eventList[i].entity);
+        this.eventList[i] = null;
+      }
+    }
+  }
+
   tick() {
     for (let i = 0; i < this.eventList.length; i++) {
       if (this.eventList[i] !== null) {
@@ -65,7 +74,7 @@ class Quake extends Event {
     super.tick();
 
     if (this.prevTime !== this.time && this.time === 3) {
-      this.root.eventManager.delete(EVENT.QUAKE);
+      this.root.sceneManager.nowScene.eventManager.delete(EVENT.QUAKE);
     }
   }
 }

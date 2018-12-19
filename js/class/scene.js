@@ -6,7 +6,7 @@ class SceneManager extends GameObject {
   }
 
   switch(scene) {
-    this.root.stage.removeChild(this.nowScene);
+    this.delete();
 
     if (scene === SCENE.TITLE) {
       this.nowScene = new TitleScene(this);
@@ -24,6 +24,13 @@ class SceneManager extends GameObject {
     this.root.stage.addChild(this.nowScene);
   }
 
+  delete() {
+    if (this.nowScene !== null) {
+      this.nowScene.eventManager.deleteAll();
+    }
+    this.root.stage.removeChild(this.nowScene);
+  }
+
   tick() {
     this.nowScene.tick();
   }
@@ -34,10 +41,12 @@ class Scene extends GameObject {
     super(parent);
 
     this.timer = new ChildTimer(this);
+    this.eventManager = new EventManager(this);
   }
 
   tick() {
     this.timer.tick();
+    this.eventManager.tick();
   }
 }
 
@@ -57,6 +66,10 @@ class TitleScene extends Scene {
     this.optionButton = new OptionButton(this);
     this.addChild(this.optionButton);
   }
+
+  tick() {
+    super.tick();
+  }
 }
 
 class OptionScene extends Scene {
@@ -67,6 +80,10 @@ class OptionScene extends Scene {
 
     this.backButton = new ToTitleButton(this, this.root.width / 2, this.root.height / 4 * 3);
     this.addChild(this.backButton);
+  }
+
+  tick() {
+    super.tick();
   }
 }
 
@@ -96,24 +113,31 @@ class GameScene extends Scene {
   tick() {
     super.tick();
 
+    this.debugInfo.tick();
+
     if (this.prevTime !== this.time) {
       console.log(this.time);
     }
 
     if (this.prevTime !== this.time && this.time === 1) {
-      this.root.eventManager.generate(EVENT.QUAKE);
+      this.eventManager.generate(EVENT.QUAKE);
     }
     if (this.prevTime !== this.time && this.time === 5) {
-      this.root.eventManager.generate(EVENT.TSUNAMI);
+      this.eventManager.generate(EVENT.TSUNAMI);
+    }
+
+    if (this.player.nowCell.state === MAP_STATE.FLOOD) {
+      this.root.sceneManager.switch(SCENE.GAMEOVER);
     }
   }
 }
 
-class GameoverScene extends GameObject {
+class GameoverScene extends Scene {
   constructor(parent) {
     super(parent);
 
-    this.background = new GameoverBackground(this);
+    //this.background = new GameoverBackground(this);
+    this.background = new SimpleBackground(this);
     this.addChild(this.background);
 
     this.gameoverLogo = new GameoverLogo(this);
@@ -121,7 +145,9 @@ class GameoverScene extends GameObject {
 
     this.endButton = new ToTitleButton(this, this.root.width / 2, this.root.height / 4 * 3);
     this.addChild(this.endButton);
+  }
 
-    this.root.stage.addChild(this);
+  tick() {
+    super.tick();
   }
 }

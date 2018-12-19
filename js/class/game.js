@@ -61,7 +61,6 @@ class Game {
     this.timer.tick();
 
     this.sceneManager.tick();
-    this.eventManager.tick();
 
     this.render();
   }
