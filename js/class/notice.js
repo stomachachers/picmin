@@ -15,12 +15,14 @@ class EventNotice extends Notice {
     this.width = 600;
     this.height = 200;
 
-    this.base = new createjs.Shape();
+    this.logoImg = document.getElementById('caution');
+
+    this.base = new createjs.Bitmap(this.logoImg);
+    this.base.x = 20;
+    this.base.y = -70;
     this.base.regX = this.width / 2;
     this.base.regY = this.height / 2;
-    this.base.graphics.beginFill('#f26b7a');
-    this.base.graphics.drawRoundRect(0, 0, this.width, this.height, 10);
-    this.base.graphics.endFill();
+    this.base.scaleY = 0.8;
     this.addChild(this.base);
 
     if (this.type === EVENT.QUAKE) {
@@ -29,10 +31,11 @@ class EventNotice extends Notice {
     if (this.type === EVENT.TSUNAMI) {
       this.textBody = '津波到達!';
     }
-    this.text = new createjs.Text(this.textBody, '100px mplus', '#f0f2dc');
+    this.text = new createjs.Text(this.textBody, '100px mplus', '#000000');
     this.text.textAlign = 'center';
     this.text.textBaseline = 'middle';
     
+
     this.addChild(this.text);
   }
 }
