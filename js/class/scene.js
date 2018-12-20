@@ -126,10 +126,10 @@ class GameScene extends Scene {
       this.root.score += 10;
     }
 
-    if (this.prevTime !== this.time && this.time === 1) {
+    if (this.prevTime !== this.time && this.time === 5) {
       this.eventManager.generate(EVENT.QUAKE);
     }
-    if (this.prevTime !== this.time && this.time === 5) {
+    if (this.prevTime !== this.time && this.time === 10) {
       this.eventManager.generate(EVENT.TSUNAMI);
     }
 

@@ -8,14 +8,20 @@ class TitleLogo extends Asset {
   constructor(parent) {
     super(parent);
 
+      
     this.x = this.root.width / 2;
     this.y = this.root.height * 0.2;
     this.logoImg = document.getElementById('logo');
     this.regX = this.logoImg.naturalWidth / 2;
     this.regY = this.logoImg.naturalHeight / 2;
-
+    
+    this.base = new createjs.Shape();
+    this.base.graphics.beginFill('#222222');
+    this.base.graphics.drawRect(this.x, this.y, this.logoImg.naturalWidth, this.logoImg.naturalHeight);
+    this.base.graphics.endFill();  
     this.logo = new createjs.Bitmap(this.logoImg);
 
+    // this.addChild(this.base);  
     this.addChild(this.logo);
   }
 }
