@@ -6,7 +6,7 @@
 津波が起こった木更津市で、被害に遭わないように避難をするゲーム。
 
 ## 遊び方
-[ゲームページ](https://stomachachers.github.io/picmin/)にアクセス
+**[ゲームページへアクセスする](https://stomachachers.github.io/picmin/)**
 
 ![ゲーム画像](game.png)
 
